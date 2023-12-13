@@ -6,6 +6,7 @@ import 'package:healthtick/utilities/custom.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
+    // use Animated Splash Screen
     home: AnimatedSplashScreen(
       splash: Text("Health Tick"),
       nextScreen: MainScreen(),

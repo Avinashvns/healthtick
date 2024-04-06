@@ -60,7 +60,7 @@ class _MainScreenState extends State<MainScreen> {
             ),
             ElevatedButton(child: Text("Insert"),
             onPressed: ()async{
-              await DbHandler().insertData(3, "Shesha", 22);
+              await DbHandler().insertData(4, "Shesha", 22);
               print("Inserted");
 
             },),
@@ -70,6 +70,11 @@ class _MainScreenState extends State<MainScreen> {
                 print("Fetch");
                 print(data);
 
+              },),
+            ElevatedButton(child: Text("Delete"),
+              onPressed: ()async{
+                final data=await DbHandler().deleteData(4);
+                print("Delete");
               },),
 
             Container(

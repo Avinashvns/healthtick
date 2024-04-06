@@ -51,4 +51,10 @@ class DbHandler {
     final data=await db!.query("DatabaseTable");
     return data;
   }
+
+//   Delete Data in Database Table
+deleteData(int id)async{
+    Database? db=await database;
+    await db!.delete('DatabaseTable' , where: 'id=?',whereArgs: [id]);
+}
 }

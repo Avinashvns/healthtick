@@ -70,9 +70,16 @@ deleteData(int id)async{
 }
 
 //   Update Data in Database Table
-  updateData(int id,Map<String, Object?>data)async{
+//   updateData(int id,Map<String, Object?>data)async{
+//     Database? db=await database;
+//     await db!.update('DatabaseTable' , where: 'id=?' , whereArgs: [id], data
+//     );
+//   }
+
+//   Update Data in Database Table
+  updateData(UserModel userModel)async{
     Database? db=await database;
-    await db!.update('DatabaseTable' , where: 'id=?' , whereArgs: [id], data
+    await db!.update('DatabaseTable' , where: 'id=?' , whereArgs: [userModel.id], userModel.toJson()
     );
   }
 

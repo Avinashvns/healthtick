@@ -86,11 +86,18 @@ class _MainScreenState extends State<MainScreen> {
               },),
             ElevatedButton(child: Text("Update"),
               onPressed: ()async{
-                final data=await DbHandler().updateData(3, {
-                  'id' : 3,
-                  'name' : "Anuradha",
-                  'age': 46
-                });
+                final data=await DbHandler().updateData(
+                  //   {
+                  // 'id' : 3,
+                  // 'name' : "Anuradha",
+                  // 'age': 46
+                  //   }
+                  UserModel(
+                      id: 3,
+                      name: "Nisha",
+                      age: 40
+                  )
+                );
                 print("Updated");
               },),
 

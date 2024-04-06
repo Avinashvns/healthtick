@@ -28,6 +28,8 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   String name='hi';
   Color data=Colors.red;
+  TextEditingController nameController= TextEditingController();
+  TextEditingController ageController= TextEditingController();
 
   @override
   void initState(){
@@ -51,100 +53,120 @@ class _MainScreenState extends State<MainScreen> {
       ),
       backgroundColor: bgcolor,
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('$name',style: TextStyle(color: Colors.white),),
-            CircleAvatar(
-              radius: 50,
-              backgroundColor: data,
-            ),
-            ElevatedButton(child: Text("Insert"),
-            onPressed: ()async{
-              // await DbHandler().insertData(3, "Shesha", 22);
-              await DbHandler().insertData(UserModel(
-                  id: 5,
-                  name: "Radhe",
-                  age: 23
-              )
-              );
-              print("Inserted");
-
-            },),
-            ElevatedButton(child: Text("Read/Fetch"),
-              onPressed: ()async{
-                final data=await DbHandler().readData();
-                print("Fetch");
-                print(data);
-                print(data[0].id);
-
-              },),
-            ElevatedButton(child: Text("Delete"),
-              onPressed: ()async{
-                final data=await DbHandler().deleteData(4);
-                print("Delete");
-              },),
-            ElevatedButton(child: Text("Update"),
-              onPressed: ()async{
-                final data=await DbHandler().updateData(
-                  //   {
-                  // 'id' : 3,
-                  // 'name' : "Anuradha",
-                  // 'age': 46
-                  //   }
-                  UserModel(
-                      id: 3,
-                      name: "Nisha",
-                      age: 40
-                  )
-                );
-                print("Updated");
-              },),
-
-            Container(
-              width: double.infinity,
-              margin: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.green.withOpacity(0.6),
-                    spreadRadius: 2,
-                    blurRadius: 2,
-                    offset: Offset(0, 3),
-                  ),
-                ],
-              ),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 20),
-                    backgroundColor: btcolor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    elevation: 10),
-                child: Text(
-                  "WELCOME",
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('$name',style: TextStyle(color: Colors.white),),
+              TextField(
+                controller: nameController,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  hintText: "Enter your name",
+                  labelText: "Name"
                 ),
-                onPressed: () {
-                  print("Clicked");
-                  setState(() {
-                    name="Avinash";
-                    data=Colors.yellow;
-                  });
-                  print(name);
-                  print(data);
-                  // Navigator.push(context, MaterialPageRoute(builder: (context)=>const SecondScreen()));
-                },
               ),
-
-            ),
-          ],
+              SizedBox(height: 5,),
+              TextField(
+                controller: ageController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    hintText: "Enter your age",
+                    labelText: "Age"
+                ),
+              ),
+              CircleAvatar(
+                radius: 50,
+                backgroundColor: data,
+              ),
+              ElevatedButton(child: Text("Insert"),
+              onPressed: ()async{
+                // await DbHandler().insertData(3, "Shesha", 22);
+                await DbHandler().insertData(UserModel(
+                    // id: 5,
+                    name: "Radhe",
+                    age: 23
+                )
+                );
+                print("Inserted");
+          
+              },),
+              ElevatedButton(child: Text("Read/Fetch"),
+                onPressed: ()async{
+                  final data=await DbHandler().readData();
+                  print("Fetch");
+                  print(data);
+          
+                },),
+              ElevatedButton(child: Text("Delete"),
+                onPressed: ()async{
+                  final data=await DbHandler().deleteData(4);
+                  print("Delete");
+                },),
+              ElevatedButton(child: Text("Update"),
+                onPressed: ()async{
+                  final data=await DbHandler().updateData(
+                    //   {
+                    // 'id' : 3,
+                    // 'name' : "Anuradha",
+                    // 'age': 46
+                    //   }
+                    UserModel(
+                        name: nameController.text,
+                        age: int.parse(ageController.text),
+                    )
+                  );
+                  print("Updated");
+                },),
+          
+              Container(
+                width: double.infinity,
+                margin: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.green.withOpacity(0.6),
+                      spreadRadius: 2,
+                      blurRadius: 2,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      backgroundColor: btcolor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      elevation: 10),
+                  child: Text(
+                    "WELCOME",
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  onPressed: () {
+                    print("Clicked");
+                    setState(() {
+                      name="Avinash";
+                      data=Colors.yellow;
+                    });
+                    print(name);
+                    print(data);
+                    // Navigator.push(context, MaterialPageRoute(builder: (context)=>const SecondScreen()));
+                  },
+                ),
+          
+              ),
+            ],
+          ),
         ),
       ),
     );

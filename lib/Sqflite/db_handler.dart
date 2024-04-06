@@ -48,18 +48,18 @@ class DbHandler {
 //   }
 
 //   Insert Data with help User Model Class
-  insertData(UserModel userModel)async{
-    Database? db=await database;
+  insertData(UserModel userModel) async {
+    Database? db = await database;
     await db!.insert('DatabaseTable', userModel.toJson());
   }
 
 // Fetch/ Read Data in Database Table
-  readData()async{
-    Database? db=await database;
-    final data=await db!.query("DatabaseTable");
+  readData() async {
+    Database? db = await database;
+    final data = await db!.query("DatabaseTable");
     // return data;
 
-  //   With model
+    //   With model
     return data.map((map) => UserModel.fromMap(map)).toList();
   }
 
@@ -69,6 +69,7 @@ deleteData(int id)async{
     await db!.delete('DatabaseTable' , where: 'id=?',whereArgs: [id]);
 }
 
+
 //   Update Data in Database Table
 //   updateData(int id,Map<String, Object?>data)async{
 //     Database? db=await database;
@@ -77,11 +78,12 @@ deleteData(int id)async{
 //   }
 
 //   Update Data in Database Table
-  updateData(UserModel userModel)async{
-    Database? db=await database;
-    await db!.update('DatabaseTable' , where: 'id=?' , whereArgs: [userModel.id], userModel.toJson()
-    );
+  updateData(UserModel userModel) async {
+    Database? db = await database;
+    await db!.update(
+        'DatabaseTable',
+        where: 'id=?',
+        whereArgs: [userModel.id],
+        userModel.toJson());
   }
-
-
 }

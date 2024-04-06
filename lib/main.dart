@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:healthtick/Sqflite/db_handler.dart';
 import 'package:healthtick/secondscreen.dart';
 import 'package:healthtick/utilities/custom.dart';
 
@@ -57,6 +58,20 @@ class _MainScreenState extends State<MainScreen> {
               radius: 50,
               backgroundColor: data,
             ),
+            ElevatedButton(child: Text("Insert"),
+            onPressed: ()async{
+              await DbHandler().insertData(3, "Shesha", 22);
+              print("Inserted");
+
+            },),
+            ElevatedButton(child: Text("Read/Fetch"),
+              onPressed: ()async{
+                final data=await DbHandler().readData();
+                print("Fetch");
+                print(data);
+
+              },),
+
             Container(
               width: double.infinity,
               margin: const EdgeInsets.all(10),

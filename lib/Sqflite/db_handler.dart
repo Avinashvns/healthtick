@@ -57,4 +57,13 @@ deleteData(int id)async{
     Database? db=await database;
     await db!.delete('DatabaseTable' , where: 'id=?',whereArgs: [id]);
 }
+
+//   Update Data in Database Table
+  updateData(int id,Map<String, Object?>data)async{
+    Database? db=await database;
+    await db!.update('DatabaseTable' , where: 'id=?' , whereArgs: [id], data
+    );
+  }
+
+
 }

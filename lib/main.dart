@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:healthtick/Sqflite/db_handler.dart';
+import 'package:healthtick/model/user_model.dart';
 import 'package:healthtick/secondscreen.dart';
 import 'package:healthtick/utilities/custom.dart';
 
@@ -60,7 +61,13 @@ class _MainScreenState extends State<MainScreen> {
             ),
             ElevatedButton(child: Text("Insert"),
             onPressed: ()async{
-              await DbHandler().insertData(3, "Shesha", 22);
+              // await DbHandler().insertData(3, "Shesha", 22);
+              await DbHandler().insertData(UserModel(
+                  id: 5,
+                  name: "Radhe",
+                  age: 23
+              )
+              );
               print("Inserted");
 
             },),

@@ -57,7 +57,10 @@ class DbHandler {
   readData()async{
     Database? db=await database;
     final data=await db!.query("DatabaseTable");
-    return data;
+    // return data;
+
+  //   With model
+    return data.map((map) => UserModel.fromMap(map)).toList();
   }
 
 //   Delete Data in Database Table

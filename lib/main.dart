@@ -76,6 +76,7 @@ class _MainScreenState extends State<MainScreen> {
                 final data=await DbHandler().readData();
                 print("Fetch");
                 print(data);
+                print(data[0].id);
 
               },),
             ElevatedButton(child: Text("Delete"),

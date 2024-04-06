@@ -16,8 +16,22 @@ void main() {
   ));
 }
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  String name='hi';
+  Color data=Colors.red;
+
+  @override
+  void initState(){
+    super.initState();
+    print("Avi");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +52,11 @@ class MainScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text('$name',style: TextStyle(color: Colors.white),),
+            CircleAvatar(
+              radius: 50,
+              backgroundColor: data,
+            ),
             Container(
               width: double.infinity,
               margin: const EdgeInsets.all(10),
@@ -70,10 +89,16 @@ class MainScreen extends StatelessWidget {
                 ),
                 onPressed: () {
                   print("Clicked");
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const SecondScreen()));
-
+                  setState(() {
+                    name="Avinash";
+                    data=Colors.yellow;
+                  });
+                  print(name);
+                  print(data);
+                  // Navigator.push(context, MaterialPageRoute(builder: (context)=>const SecondScreen()));
                 },
               ),
+
             ),
           ],
         ),

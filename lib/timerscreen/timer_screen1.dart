@@ -56,34 +56,6 @@ class _TimerScreen1State extends State<TimerScreen1> {
     _timer.cancel();
   }
 
-  // void _resetTimer() {
-  //   _timer.cancel();
-  //   setState(() {
-  //     _secondsRemaining = 10;
-  //   });
-  // }
-
-  // @override
-  // void initState(){
-  //   super.initState();
-  //   player.onPlayerStateChanged.listen((state) {
-  //     setState(() {
-  //       isPlaying=state==PlayerState.playing;
-  //     });
-  //   });
-  // }
-  // @override
-  // void dispose(){
-  //   player.dispose();
-  //   super.dispose();
-  // }
-  // Future setAudio()async{
-  //   player.setReleaseMode(ReleaseMode.loop);
-  // //   Load audio from Assets
-  //   final pl=AudioCache(prefix: 'assets');
-  //   final url=await pl.load('counter_tick.mp3');
-  //   player.setSourceUrl(url.path);
-  // }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -224,7 +196,6 @@ class _TimerScreen1State extends State<TimerScreen1> {
                 onPressed: () {
                   print("Stoped");
                   _timer.cancel();
-                  // Navigator.push(context, MaterialPageRoute(builder: (context) => SecondScreen()));
                 },
               ),
             ),

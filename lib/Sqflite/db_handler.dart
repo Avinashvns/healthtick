@@ -54,7 +54,7 @@ class DbHandler {
   }
 
 // Fetch/ Read Data in Database Table
-  readData() async {
+  Future<List<UserModel>>readData() async {
     Database? db = await database;
     final data = await db!.query("DatabaseTable");
     // return data;

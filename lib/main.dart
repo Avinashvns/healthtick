@@ -3,6 +3,7 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:healthtick/Sqflite/db_handler.dart';
 import 'package:healthtick/model/user_model.dart';
 import 'package:healthtick/secondscreen.dart';
+import 'package:healthtick/user_screen.dart';
 import 'package:healthtick/utilities/custom.dart';
 
 void main() {
@@ -87,8 +88,10 @@ class _MainScreenState extends State<MainScreen> {
                 // await DbHandler().insertData(3, "Shesha", 22);
                 await DbHandler().insertData(UserModel(
                     // id: 5,
-                    name: "Radhe",
-                    age: 23
+                    // name: "Radhe",
+                    // age: 23
+                  name: nameController.text,
+                  age: int.parse(ageController.text),
                 )
                 );
                 print("Inserted");
@@ -161,6 +164,7 @@ class _MainScreenState extends State<MainScreen> {
                     print(name);
                     print(data);
                     // Navigator.push(context, MaterialPageRoute(builder: (context)=>const SecondScreen()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>UserScreen()));
                   },
                 ),
           

@@ -2,14 +2,14 @@
 
 class UserModel{
   // final int id;
-  final int? id;
+  final int id;
   final String name;
   final int age;
 
   // constructor
   UserModel({
     // required this.id,
-    this.id,
+    required this.id,
     required this.name,
     required this.age
 });

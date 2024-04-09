@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:healthtick/Sqflite/db_handler.dart';
 import 'package:healthtick/model/user_model.dart';
 
+import 'model/book_model.dart';
+import 'package:healthtick/model/vendor_dj_model.dart' as vendor_dj_model;
+import 'package:healthtick/model/book_model.dart' as book_model;
+
 class UserScreen extends StatefulWidget {
   const UserScreen({super.key});
 
@@ -22,21 +26,32 @@ class _UserScreenState extends State<UserScreen> {
       ),
       body: SafeArea(
         child: FutureBuilder(
-          future: DbHandler().readData(),
-          builder: (context, AsyncSnapshot<List<UserModel>> snapshot) {
+          // future: DbHandler().readBook(),
+          future: DbHandler().readVendorDj(),
+          builder: (context, AsyncSnapshot<List<vendor_dj_model.Result>> snapshot) {
+          // future: DbHandler().readData(),
+          // builder: (context, AsyncSnapshot<List<UserModel>> snapshot) {
             if(!snapshot.hasData) return CircularProgressIndicator();
             return ListView.builder(
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
-                nameController.text=snapshot.data![index].name ;
-                ageController.text=snapshot.data![index].age.toString();
+                // nameController.text=snapshot.data![index].book ;
+                // ageController.text=snapshot.data![index].price.toString();
+                nameController.text=snapshot.data![index].djName ;
+                ageController.text=snapshot.data![index].package.toString();
+                // nameController.text=snapshot.data![index].name ;
+                // ageController.text=snapshot.data![index].age.toString();
 
 
                 return ListTile(
-                  title: Text(snapshot.data![index].name),
-                  subtitle: Text(snapshot.data![index].age.toString()),
+                  // title: Text(snapshot.data![index].book),
+                  // subtitle: Text(snapshot.data![index].price.toString()),
+                  title: Text(snapshot.data![index].djName),
+                  subtitle: Text(snapshot.data![index].package.toString()),
+                  // title: Text(snapshot.data![index].name),
+                  // subtitle: Text(snapshot.data![index].age.toString()),
                   trailing: SizedBox(
-                    width: 200,
+                    width: 300,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -109,6 +124,10 @@ class _UserScreenState extends State<UserScreen> {
                             await Navigator.push(context, MaterialPageRoute(builder: (context) => UserScreen()));
                           },
                         ),
+                        CircleAvatar(
+                          radius: 50,
+                          backgroundImage: NetworkImage(snapshot.data![index].images),
+                        )
                       ],
                     ),
                   ),
